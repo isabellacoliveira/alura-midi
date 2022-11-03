@@ -1,0 +1,337 @@
+buscar e trazer o elemento que forma o seletor desse elemento 
+querySelector('tecla_pom');
+entre aspas devemos passar o id do elemento, ou a classe ou o nome da tag
+após isso, temos um erro de referência
+ele necessita de um escopo, ou seja, temos de dizer ao js aonde queremos que seja buscado este elemento com este seletor 
+sendo assim , utilizamos ele dentro de um arquivo html 
+document: representa todo o documento html 
+com essa sintaxe: 
+ document.querySelector('.tecla_pom');
+<button class=​"tecla tecla_pom">​Pom​</button>​
+
+ele acessa o documento html e seleciona o que queremos trabalhar
+
+A ferramenta DevTools presente nos navegadores web é de grande ajuda para comunidade de desenvolvedores web, a ponto de serem apelidados carinhosamente de “melhor amiga/o” da pessoa desenvolvedora.
+Através dessa ferramenta, conseguimos editar a aplicação em tempo de execução, adicionar ou remover tags HTML, mexer no CSS da página, escrever código JavaScript no console e ver as modificações sem persistência.
+
+Clicando no botão:
+Conhecemos a tag audio do HTML e como ela funciona, também como adicionar código JavaScript inline a partir do atributo onclick na tag button, e também como é a função alert() do JavaScript.
+
+Conectar JS com HTML:
+Aprendemos porque devemos ter arquivos dedicados para cada linguagem, e a extensão .js para arquivos com JavaScript, porque chamamos o nosso arquivo principal de JavaScript de main.js, e também, como fazemos para inserir um arquivo .js dentro de uma página HTML com a tag script.
+
+Buscar um elemento:
+Aprendemos os tipos de seletores que podemos usar no JavaScript (elemento, classe e id), como utilizar a função querySelector para selecionar os elementos da nossa página HTML. Vimos nesta aula a referência document, que representa o documento HTML dentro do JavaScript, e o significa o Reference Error e como solucionar, além de entender que o JavaScript é uma linguagem case sensitive, e uso do operador ponto final para entrar dentro de referências como o document, e que o ponto e virgula é opcional porém recomendado.
+
+devemos colocar a tag script ao final da tag body, pois o MediaDeviceInfo.js está dependendo do body do js, mas o body somente vem depois da tag head 
+há o bloqueio de reprodução sem o usuário interagir com a página
+
+Play no JS:
+Como manipular a tag <audio> do HTML através do JavaScript, como selecionar um elemento a partir de um seletor de id e a reproduzir um som a partir da função play(). Além disso, viu também como os erros são apresentados na aba Console da ferramenta DevTools.
+
+O que é uma função?:
+O que é uma função, para que servem, como declará-la e sua sintaxe básica. Além disso, viu que a ordem de execução de um código JavaScript importa, desde a inserção da tag script antes do fechamos da tag </body> no HTML até a ordem do código JavaScript dentro do seu próprio arquivo.
+
+Clique no botão:
+A utilizar o onclick como atributo no JavaScript, e como atribuir uma função ao onclcik sem que esta função seja invocada imediatamente.
+
+[00:00] Olá. Bom, já vimos nas aulas passadas como conseguir reproduzir o som que está dentro da tag áudio e passar o controle para nossa tag button do Alura Midi. Agora temos um desafio de como fazer a mesma tarefa para as próximas teclas do nosso Alura Midi. Vamos voltar lá no nosso Visual Studio Code e a maneira mais simples ou com o que sabemos até agora, seria copiar esse código e renomear para cada tipo de som.
+
+[00:38] Vamos fazer isso só para ver como vai ficar e o tamanho que vai ficar o nosso arquivo “main.js”. Eu vou fazer e vou mostrar para vocês como isso vai ficar no fim.
+
+[00:55] Então basicamente vamos ter que copiar a função e o querySelector, tocaSomPom e vai ficar tocaSom..., vamos ver o outro instrumento, Clap, então tocaSomClap, document.querySelector(‘#som_tecla_clap’).play() e tocaSomClap. E vamos reproduzir isso mais sete vezes e vamos ver como vai ficar no fim.
+
+(vídeo acelerado do código sendo digitado mais sete vezes)
+
+[01:49] Agora conseguimos reproduzir o código que fizemos para todas as nossas nove teclas, olha como que está a situação desse código. Muito igual, muito parecido, já está salvo eu só vou recarregar meu navegador e vou mostrar para vocês.
+
+[02:08] Já aconteceu problemas que eu digitei alguma coisa errada, “splah is not defined”. Vou até olhar o meu código. Olha como fica difícil encontrar onde está o erro dessa forma, nem consigo encontrar direito onde está o splash.
+
+[02:29] Achei, faltou um S. Agora vou reproduzir os sons e vocês vão ver que está tudo funcionando, porém o nosso código está horrível, convenhamos.
+
+[02:50] Bom, se não quisermos avançar o código e só quisermos organizar e nos ajudar a entender, um recurso que o JavaScript tem e todas as linguagens de programação tem, é um recurso de comentários, que é basicamente um texto, uma frase que você pode escrever e que não vai ser executada como um código JavaScript, ela vai ser ignorada e serve só para nós desenvolvedores podermos ter uma ajuda, nós mesmos do futuro, quando revisitamos esse código, daqui um ano, daqui meses, conseguir entender o que nós mesmo escrevemos.
+
+[03:28] Então os comentários podem começar com barra barra //, que é o comentário em linha, podemos escrever por exemplo POM e podemos colocar umas linhas para separar e tem uma função do pom e tem o querySelector do botão pom.
+
+[03:53] Agora do Clap eu posso usar um comentário em bloco, que é o barra asterisco /* e então eu consigo dar um “Enter” e todas as linhas abaixo já ficaram cinzas, significa que a partir dali tudo está comentado, mas eu posso encerrar o meu comentário de bloco com asterisco barra */e entre esses dois símbolos, essas linhas são ignoradas, são consideradas como comentário.
+
+[04:26] Também posso fazer o clap para me ajudar nesse código, entender esse código, posso ir dividindo o meu código com comentários para conseguir ajudar a entender e dar manutenção. Mas, de novo, entramos naquela mesma questão: temos comentários, temos o código funcionando, mas imagina se tivéssemos 88 teclas.
+
+[05:02] Com 9 teclas já estamos com um código de 60 linhas e se começarmos a colocar os comentários, potencialmente já vai virar umas 90 linhas. Agora imagina se tivermos um monte de teclas, seria praticamente um horror conseguir trabalhar nesse código.
+
+[05:19] Agora então que vimos que não compensa fazer repetição de código, até porque se precisarmos mudar alguma coisa na funcionalidade das nossas funções que tocam som, teríamos que mexer em pelo menos nove funções, precisamos aprender uma nova coisa do JavaScript, que é automatizar as nossas funcionalidades e principalmente trabalhar com muitos elementos de uma vez só, precisamos aprender a trabalhar com listas de elementos.
+
+[05:52] E para isso, a primeira coisa que temos que fazer é ao invés de selecionar um único botão do nosso teclado, precisamos saber como selecionar todos os botões de uma vez e pegar todos eles de uma vez e colocar a função que toca o som. Então para isso eu vou usar o console do navegador, estou no Firefox, e no console vou digitar o nosso documento, document, porque dentro do meu documento eu quero fazer uma busca, então document.querySelector.
+
+[06:31] Só que ao invés de eu usar agora o querySelector, que o querySelector busca o primeiro elemento que ele encontrar com aqueles seletor informado, eu vou usar o querySelectorAll. O querySelectorAll é uma funcionalidade do JavaScript que busca todos os elementos com aquele seletor que vocês passaram aqui entre os parênteses, então eu vou abrir aspas simples e vou passar o seletor que todos esses botões tem.
+
+[07:06] Eu posso inspecioná-los na aba inspecionador e ver qual é. Sabemos que o nome da tag button não é um seletor muito bom, porque pode ser que eu tenha outros botões que não sejam do meu teclado no futuro da minha aplicação e pode dar algum problema. Eu quero garantir que sejam só os botões do meu teclado do Alura Midi.
+
+[07:30] Então eu vejo que tem aqui uma classe tecla, que tem todos os meus botões. Eu vou usá-la como seletor de todos os botões. Então seletor de classe começa com .tecla e vou dar “Enter” para ver o que acontece.
+
+[07:46] Dando “Enter” eu vou ver que a execução que acontece no console é trazer uma linha escrito node list e abre um número 9, tem um número 9 me indicando qual a quantidade de elementos que ele encontrou com esse seletor, abre um colchete e dentro desse colchete começa cada elemento button encontrado. Eu consigo passar o mouse em cima e ele destacar na nossa página cada um dos elementos que foram encontrados.
+
+[08:19] Se eu clicar nesse triângulo que tem do lado esquerdo do node list, ele vai abrir e mostrar essa lista ainda com o índice do lado, 012345678, então são nove elementos começando do zero ao 8º, somando 9 e cada botão desse elemento.
+
+[08:41] Eu vou executar agora o mesmo código no Chrome para vocês verem a diferença. Então vou recarregar, document.querySelectorAll(‘.tecla’), vou dar o “Enter”. Então também aparece o node list com 9 elementos e o triângulo para abrir e ver os índices dessa lista e também todos os elementos que estão dentro dela.
+
+[09:14] Notem que a lista começa com colchete, então antes de abrir o triângulo vimos todos os elementos, em volta deles tem um colchete, mesma coisa no Firefox, se eu recolher esse triângulo eu consigo ver que elas estão em volta de um colchete. Isso é a característica que estamos trabalhando com listas.
+
+[09:35] E agora precisamos saber como colocar o nosso código para funcionar junto com essa lista. Então no lugar de um querySelector de um botão, no “main.js” eu vou apagar todo esse código, então vocês não precisavam fazer essa repetição que eu fiz, era só para termos noção de quão caótico pode ser.
+
+[09:57] E lá onde eu tenho o querySelector da tecla pom e o onclick eu vou apagar esse código sem dó, quem tiver dó pode comentar, que ele não vai ser comentário, mas não tenham dó de código, pode apagar, e vou usar o querySelector no lugar. Então document.querySelectorAll, agora vamos usar aqui a nossa nova função, querySelectorAll, abre e fecha parênteses, aspas, ponto tecla
+
+
+Como vimos no vídeo anterior, conseguimos capturar todos os elementos do nosso teclado, todos os botões valor Alura Midi de uma vez só e obtivemos uma lista elementos. E agora precisamos começar a entender como essas listas funcionam no JavaScript e como podemos automatizar alguns códigos utilizando a lista.
+
+[00:25] Mas primeiro de tudo precisamos deixar nosso código muito legível e muito fácil de entender. Vamos voltar lá no “main.js”, no VS Code e já colocamos o document.querySelectorAll, selecionando todos os elementos com a classe tecla.
+
+[00:46] Porém se batermos o olho de primeira, às vezes fica difícil entender que por trás desse código existe uma lista e uma lista de elementos que compartilham essa mesma classe, portanto, uma coisa que poderíamos fazer para melhorar a legibilidade, o entendimento desse código, é criar alguns nomes que possam nos ajudar entender o código. O ideal seria se tivéssemos no lugar desse document.querySelectorAll, pudéssemos utilizar o português mesmo e algo como "lista de teclas", por exemplo.
+
+[01:34] Que seria uma maneira de conseguir entender que eu sei que tem uma lista e que o que tem dentro dessa lista são teclas. E é possível fazer isso com o JavaScript, usando um recurso da linguagem chamado referências. As referências no JavaScript devem ser criadas ou declaradas com base no valor que elas vão receber e ter que guardar. Por exemplo, a nossa lista de teclas. Será que em algum momento, no nosso JavaScript, na execução do nosso JavaScript a lista de teclas vai se tornar outra coisa? Vai receber um outro valor?
+
+[02:17] Muito provavelmente não e o ideal seria que realmente a lista de teclas sempre armazenasse a mesma lista de teclas, portanto, terá seu valor constante. Porém, se fosse um outro tipo de valor que fosse armazenado nessa referência, que pudesse ter seu valor modificado ao longo do script, essa outra referência poderia ser uma variável, que não é o nosso caso.
+
+[02:47] E o ideal mesmo é usarmos sempre referências constantes, e caso necessitarmos de uma variável a utilizamos como variável. Então como eu crio uma referência constante no JavaScript? Já criamos o nome dela como listaDeTeclas, que seria o ideal e é isso mesmo, podemos criar com o nome que quisermos, porém antes colocamos a declaração dessa referência, no nosso caso vai ter um valor constante, então escrevemos const listaDeTeclas.
+
+[03:31] Então por isso que é importante saber se ela vai ser uma constante, uma variável, porque isso define essa palavra que vamos escrever antes do nome da referência do lado esquerdo. E depois do lado direito temos o sinal de atribuição, que já conhecemos, que vai armazenar o que está do lado direito dentro dessa referência. Então queremos colocar a nossa lista de teclas que está dentro do document.querySelectorAll, armazenado dentro de lista de teclas.
+
+[04:03] Então eu vou recortar o código ou podemos arrastar movendo e vamos colocar para o lado direito do sinal de atribuição. E desta forma conseguimos ter uma lista de teclas guardadas em um nome que faça sentido, que tenha significado, que seja fácil de entender. E a partir da lista de teclas que vamos começar a manipular nossa lista de botões nas nossas próximas aulas.
+
+[04:30] Então inclusive, da forma que eu fiz e declarei, se eu for lá no navegador, então vou no Firefox, vou recarregar Se eu abrir o console e digitar “lista de teclas” ele já vai aparecer para mim até para auto completar, eu vou dar o “Enter” e ele vai aparecer aquela node list.
+
+ E se eu fosse usar essa mesma lógica para colocar o som nos outros botões, eu teria que fazer algo parecido com isso, ou seja, listaDeTeclas[1].onclick e criar uma função tocasSomClap, listaDeTeclas[2].onclick = tocaSomTim e criar essa função. Porém sabemos que se eu criar todas essas funções, o meu código vai ficar enorme, não vai ficar funcional, vai ficar repetitivo, eu vou ter os mesmos problemas que estávamos tendo antes.
+
+
+Lista de elementos:
+O que são os comentários de código e como utilizá-los para auxiliar durante a escrita da nossa aplicação. Vimos também uma alternativa ao querySelector quando necessário buscar muitos elementos, que é o querySelectorAll, que retorna uma lista (NodeList) com todos os elementos do seletor informado evitando a repetição de código.
+
+Referências:
+Para que serve uma referência e como declaramos uma referência de valor constante no código.
+
+Conhecendo listas:
+A estrutura de uma lista em JavaScript e como podemos acessar os elementos a partir dos índices com a sintaxe do colchetes.
+
+[00:00] Olá. Na aula passada aprendemos como obter todos os botões do teclado do Alura Midi utilizando uma função chamada querySelectorAll, que recebe a classe que todas têm em comum. E o retorno disso armazenamos em uma constante, que é uma referência que vai facilitar o entendimento do nosso código, que criamos e demos o nome de listaDeTeclas. E depois aprendemos como acessar cada elemento individualmente dentro dessa lista utilizando os índices.
+
+[00:38] Agora precisamos saber como acessamos todos de uma vez, na verdade cada item dessa lista de forma automatizada, pois não vai ser viável continuarmos repetindo esse trecho de atribuição a um clique de cada elemento, uma função de uma lista que não sabemos o tamanho. Aqui estamos no escopo pequeno, trabalhando em uma lista de 9 botões, mas imagina se fosse um teclado com 80 botões, com 1000 botões e que precisássemos adicionar alguma função ao onclick delas?
+
+[01:11] Portanto, toda linguagem de programação contém uma estrutura de repetição para trabalhar nesses casos de códigos que precisam ser repetidos muitas vezes até um determinado ponto. E no JavaScript vamos usar, por enquanto, uma estrutura chamada while. Essa estrutura, essa condição While significa em inglês - até vou deixar aqui em cima do código comentado - significa enquanto.
+
+[01:42] Enquanto determinada condição que vai ser informada aqui nos parênteses que escrevemos logo após a palavra while, a declaração while, vamos criar uma condição que vai determinar onde essa repetição deve parar, porque senão ela vai rodar para sempre, vai causar um loop infinito e vai travar o nosso navegador e possivelmente até o computador. Portanto, precisamos ter uma condição que tenha fim.
+
+[02:15] E depois dos parênteses temos as chaves, onde vai ter a rotina dessa repetição, ou seja, o que vai ser executado, guardado e feito a cada loop e que chamamos de laço também, a repetição dessa função. Então dentro das nossas chaves vamos colocar a rotina de acessar um elemento da lista, acessar o onclick deles e colocar uma função dentro desse onclick. Então eu vou passar esse código que já tínhamos, o listaDeTeclas[0].onclick = tocaSomPom para dentro das chaves da while.
+
+[02:57] E agora vamos precisar entender como vamos criar a condição do while. Ele espera receber uma condição que seja verdadeira ou falsa, ou seja, algo que o JavaScript vai conseguir verificar. No nosso console do navegador, vamos voltar lá, vamos abrir o DevTools e a aba console.
+
+[03:22] Conseguimos testar um pouco esses valores que são verdadeiros e falsos, representados pela palavra true no inglês significa verdadeiro, este tipo de valor existe em várias linguagens de programação, e também tem o false de falso. Precisamos ter um true ou false e precisamos comparar as condições para passarmos no while.
+
+[03:50] Então o que temos? Temos o tamanho da nossa lista, que é de nove elementos e temos repetições. Então podemos contar essas repetições e enquanto essas repetições não atingirem o tamanho da nossa lista, elas vão tendo que ser incrementadas, ter o seu valor contado.
+
+[04:12] Então por exemplo, podemos utilizar aquele operador matemático que aprendemos, que é o de maior e de menor para comparar esses dois números, que é o número da repetição atual do while com o tamanho da lista. Então por exemplo, na primeira repetição, que seria a repetição 0, temos o número zero e podemos comparar com o tamanho da lista, que é o tamanho de nove elementos. Então enquanto zero for menor, o sinal de menor, que 9, true.
+
+[04:45] Então é fácil, ele vai comparar: "0 é menor que 9?" True. Depois na próxima repetição: "um é menor que nove?" True. E vai repetindo. E sempre vamos ter do lado direito um número que vai condicionar a situação de falso. Então: "2 menor que 9?", true, até chegar em: "9 é menor que 9?", vai dar falso. Então precisamos ter do lado esquerdo do nosso operador algo que sempre conte as repetições e compare com o número total da nossa lista.
+
+[05:20] Então vamos precisar criar um contador. E para isso precisamos criar uma referência variável, que vai se chamar contador. No JavaScript, para criarmos uma referência variável, escrevemos a palavra let, que define uma determinada variável, algo que vai receber sempre um valor novo. No nosso caso vai ser o contador, que vai começar com 0, let contador = 0;
+
+[05:52] Então aqui dentro da condição do while eu vou ter o contador e vou compará-lo com 9, while (contador < 9). Só muito cuidado nesse ponto do código porque se você salvar e abrir em um navegador, vai dar loop infinito, porque o nosso contador ainda vale 0. Então lembre-se: 0 comparado (é menor que) 9, true, então aqui vai bugar o seu navegador e até seu computador. Então não salvem e não recarreguem.
+
+[06:24] Agora precisamos saber como mudamos o valor do contador a cada repetição do nosso while. Então primeiro ele vai valer zero, vai comparar aqui com nove e vai dar true e vai entrar no contador. Então como eu vou mudar o valor desse contador? Como dentro do while eu posso fazer qualquer coisa, eu posso inclusive mudar o valor de contador, porque ele é uma variável, é uma referência variável, ele permite o chamarmos de novo embaixo, contador e vai receber, por exemplo, o número um.
+
+[07:02] Só que se eu colocar um, quando ele passar de novo aqui, fazer a segunda repetição vai valer 1, vai ser menor que 9, verdade e depois vai valer 1 de novo, ou seja, vai ser de novo um loop infinito, sempre verdade. Então, na verdade temos que ter contador para receber algum valor algum mais 1, só que esse algum valor vai ter que ser o valor antigo do contador, então pode ser ele mesmo, contador = contador+1;.
+
+[07:40] Como assim? Vamos pensar. Então aqui na primeira repetição o contador vai valer 0, 0 é menor que 9? Verdade. Então 0 + 1 vai ser 1, então ele primeiro faz essa conta, ele sempre vai processar essa conta primeiro, como se tivesse entre parênteses como eu coloquei, e depois ele vai fazer 0 + 1 = 1, então vou guardar 1. Então volta a retornar. Contador vai ser 1, 1 é menor que 9? É. Então agora o contador vai valer um e vai somar com mais 1, ou seja, vai ser 2 e vai guardar o novo valor 2. E assim por diante.
+
+[08:30] Mas como eu sei que isso vai funcionar? Como eu vejo esse valor do contador sendo incrementado e modificado ao decorrer ou durante a execução desse while. Podemos usar agora uma funcionalidade que nos ajuda a entendermos o nosso código em alguns momentos, principalmente dentro de funções que não conseguimos acessar no console, mas de dentro do JavaScript conseguimos acessar o console atravessar da referência dele, que se chama console.
+
+[09:04] Então dentro do JavaScript existe uma palavra reservada chamada console, que é o console do DevTools. E entrando no console temos aqui uma função chamada log, que consegue mandar mensagens lá para o nosso console do navegador, de quem for abrir essa página. Então eu posso colocar aqui o nome do nosso contador e ele vai imprimir o contador várias vezes, quer dizer, até essa condição ser falsa console.log(contador). Agora sim eu posso salvar, porque temos uma comparação que pode sim se tornar falsa.
+
+[09:46] Então eu vou salvar e vou entrar no meu navegador e vou recarregar. Olha só 123456789. Já apareceu aqui o nosso contador, foi impresso pelo “main.js” linha 16, se entramos na nossa linha 16, vai ver que está o console.log. Então nós que criamos esse contador, esses números. E se tocarmos aqui nas teclas, a pom tocou, clap, tim, splash, toim, nenhuma delas ainda tocou, porque falta um pequeno detalhe no nosso código.
+
+[10:26] Onde eu tenho o índice de cada elemento, também não posso ser sempre 0 nas nove vezes, eu preciso que seja uma vez o número 0, outra vez o número 1, depois o 2, depois o 3, depois o 4, depois o 5, ou seja, quem é que tem esse número 1234567... até a condição ser falsa? O próprio contador.
+
+[10:49] Então podemos, no lugar de 0 escrever a referência contador, que vai guardar um número variável, um número que uma hora vai ter um valor e outra hora vai armazenar um outro valor, um outro número. Então vamos salvar, vou recarregar a minha página do navegador e vou agora apertar a tecla clap.
+
+[11:17] O Clap deu pom, o tim deu pom, todos estão tocando pom. Claro, porque estamos com a função tocaSomPom para todos os nossos botões, as nossas teclas. Então precisamos, para as próximas aulas, descobrir como fazemos uma função mais genérica, que consiga descobrir qual é o som da tecla que estamos clicando.
+
+[11:46] E só mais um detalhe aqui no nosso código antes de encerrarmos esse vídeo. É sobre a nossa condição que compara o contador com o número 9. A nossa lista, sim, sabemos que tem 9 elementos, mas será que sempre vamos saber quantos elementos tem em uma lista? Nem sempre. Como falamos, de repente estamos trabalhando com um teclado de 100 teclas, de 1000 teclas, enfim. Pode ser que seja um teclado dinâmico, pode ser outro tipo de funcionalidade, não necessariamente musical.
+
+[12:20] Então podemos acessar o console do navegador e acessar a listaDeTeclas, e podemos ver que a listaDeTeclas, quando a abrimos, além de conferir os índices, podemos ver que existe uma propriedade/atributo chamado length. Length em inglês significa tamanho, o comprimento dessa lista que guarda o número 9.
+
+[12:43] Então ao invés de usarmos o número 9 dentro do while, vamos usar a listaDeTeclas e o atributo length, que então esse atributo vai guardar o número 9. while (contador < listaDeTeclas.length).
+
+[12:56] Então veja que estamos fazendo uma comparação entre duas referências que armazenam números nelas. Dessa forma conseguimos ter mais ideia e o nosso código consegue ter um pouco mais de legibilidade, apesar de ele ficar um pouco maior em termos de palavras, ao invés de comparar números, que nem sempre sabemos o significado dos números dentro do nosso código. Dessa forma fica mais dinâmico o nosso código.
+
+Os parâmetros são os nomes que damos a valores que uma função pode receber em sua chamada, que podem ou não ter um valor padrão. Os parâmetros de uma função são como variáveis ficam disponíveis apenas no corpo da função.
+
+No vídeo anterior vimos como fazer uma função mais genérica que possa executar qualquer tipo de som armazenado numa uma tag áudio, dado o seletor da tag áudio. Fizemos a função tocaSom. E conseguimos testá-la no console passando o ID daquelas tags áudios e escutar o som de cada instrumento daquela tag áudio. Porém, quando fomos clicar dentro do Alura Midi nas nossas teclas no navegador, obtivemos um erro no console dizendo que o querySelector falhou, pois [Object PointerEvent] não é um seletor válido.
+
+[00:46] Isso é porque não informamos o seletor correto para nossa função, o parâmetro correto para nossa função, então o JavaScript tentou resolver com as informações que ele tinha ali. Se olharmos aqui dentro do while, no nosso “main.js”, onde temos a instrução do onclick atribuindo a função tocaSom, vemos que não passamos o parâmetro dela.
+
+[01:10] Então como vamos conseguir passar o parâmetro? Então se eu escrever aqui os parênteses e passar um ID fixo, por exemplo, só para testarmos ‘#som_tecla_pom’ e salvar o arquivo e recarregar, vamos ter aquele velho problema que a página não pode executar o play, porque o usuário ainda não interagiu com a página.
+
+[01:45] Ou seja, toda vez que colocamos os parênteses ao lado do nome de uma função, já a invocamos imediatamente, antes mesmo do usuário interagir com a página e isso é uma restrição, um bloqueio que o browser (navegador) faz e não é isso que queremos, não queremos que ela seja executada nesse momento que o while ainda está atribuindo e guardando essa função em cada click de cada tecla do Midi.
+
+[02:14] Então precisamos de certa forma poder passar um parâmetro para essa função, para esse atributo onclick, sem executá-la imediatamente. E o JavaScript tem uma funcionalidade muito interessante, chamada funções anônimas, que eu vou utilizá-la no lugar da função tocaSom.
+
+[02:41] Então no onclick eu vou remover o tocaSom por enquanto e vou escrever uma função anônima, ou seja, uma função sem nome. E essas funções sem nome só podem ser utilizadas nesse contexto de quando elas são o valor de algum atributo ou estão sendo armazenadas dentro de alguma referência constante ou variável. Então eu estou aguardando uma função, vou escrever function dentro desse atributo onclick.
+
+[03:09] E não preciso colocar um nome nela, abre e fecha parênteses e depois abre fecha as chaves e dentro das chaves eu vou conseguir chamar a minha função tocaSom() com parênteses, porque na nossa atribuição, a função anônima no onclick, vamos declarar ou criar uma função nova, portanto, quando criamos uma função não a invocamos imediatamente, só criamos e declaramos que ela existe naquele contexto, naquele momento.
+
+[03:47] Para chamá-la eu vou ter que fazer o clique no botão, naquele determinado botão. Portanto agora dentro da minha função anônima, eu vou poder chamar a função tocaSom e aí colocar os parênteses e passar um dado ID. Então vou colocar os parênteses e aspas simples tocaSom(‘#som_tecla_pom’), por exemplo.
+
+] No nosso caso a função tocaSom está recebendo o ID de um elemento que vai ser buscado pelo querySelector e então reproduzido o seu som através da função play. Essa função tocaSom está sendo utilizada dentro do nosso while, que acessa cada tecla do nosso Alura Midi, utilizando a variável que criamos para contar as repetições e então acessar o índice, elas vão conter um índice que vai acessar um determinado elemento da lista de teclas.
+
+[00:48] E portanto, a cada elemento vamos acessar seu onclick e atribuir uma função anônima e aí sim chamará função tocaSom. Porém, os parâmetros que estamos passando para a função tocaSom ainda está fixo, porque escrevemos o texto fixamente, porém sabemos que essa última parte do nosso parâmetro, a parte do nome do instrumento, do nome do som, deve ser dinâmica.
+
+[01:18] Se entrarmos no nosso “index.html” e olharmos as tags áudio, vamos ver que existe um padrão para os IDs, todos começam com som_tecla_pom, fazendo só a última parte ser diferente a cada elemento áudio, cada tag áudio.
+
+[01:36] E nos nossos botões podemos perceber que temos uma parte dessa informação, temos além da classe tecla, também cada botão tem uma classe chamada tecla e o nome do som do instrumento, pom, clap, tim. Então dentro do while não temos acesso a tag áudio, porém temos acesso a um elemento button e dentro desse elemento button, através da sua classe, podemos acessar qual é o instrumento em questão que está sendo clicado.
+
+[02:10] Então é a partir dessas classes que estão dentro dos elementos button que vamos conseguir montar dinamicamente esse texto, pois texto é um tipo de dado que é dinâmico, podemos escrever e inventar do jeito que precisarmos. Então vamos usar o console do navegador, estou no Chrome, vou limpar o console e vou acessar a lista de teclas e um índice qualquer, vou acessar o índice zero, por exemplo, que é o da tecla pom.
+
+[02:42] Eu vejo que ele retorna o botão se eu der “Enter”, então eu vou acessar um atributo, que quando colocamos o ponto, lista de teclas colchete zero ponto, depois dos colchetes, conseguimos entrar dentro desse elemento, ver todos os atributos e funcionalidades que estão disponíveis para esse elemento como já temos feito.
+
+[03:02] E um desses atributos, assim como o onclick é um atributo, o class também é um atributo e ele é disponível da forma mais organizada pelo listaDeTeclas[0].classList. E pelo próprio nome já sabemos que isso vai nos retornar uma lista que é um tipo de dado que também já estamos aprendendo a utilizar. Se eu dar um “Enter” ele vai me retornar naquela anotação também que já estamos começando a conhecer melhor, que é a de colchetes representando uma lista.
+
+[03:36] E também nas listas temos o índice. No nosso caso, em uma lista de classes, temos o índice, o zero, o valor armazenado é a classe, a classe simplesmente é um texto, portanto está aqui entre aspas, representando o que é um texto, no índice 1 também temos a segunda classe, nos totalizando uma lista de 2 itens. Lembrando que os índices sempre começam com zero.
+
+[04:05] Portanto, se eu quiser acessar a segunda classe dessa lista, eu tenho que usar a anotação de colchetes com índice 1. Dessa forma listaDeTeclas[0].classList[1] e assim vou conseguir acessar a segunda classe da minha lista de classes.
+
+[04:33] Com esse dado, agora já sabemos como obtê-lo, vamos trazê-lo dentro do nosso while. Então vou voltar no “main.js” e vou ter a nossa lista de teclas. Agora que usamos o contador que está armazenando o valor do nosso índice, então listaDeTeclas[contador].classList[1], que sabemos que vai retornar a lista que tem aquela instrução, aquele pedaço de texto que se chama tecla_pom, enfim, a tecla que estiver aqui no momento.
+
+[05:07] E podemos inclusive utilizar o console.log para ver se realmente essa informação que colocamos está correta. E para facilitar o entendimento do nosso código eu vou armazena-la dentro de uma referência constante para ficar mais fácil de entender o que esse trecho de código faz.
+
+[05:28] Então eu vou declarar uma constante que vai ter, por exemplo, o instrumento. Instrumento é o nome da minha constante e vai armazenar essa instrução que vai obter o nome da segunda classe deste elemento. Então eu vou dar um console.log(instrumento) nessa referência instrumento, que é uma constante.
+
+[05:54] Então vou recarregar no navegador a minha página e já vou ver que no console está dando o console tanto do nosso instrumento como também do valor do contador que mantivemos. Então na repetição 1 tem a tecla_pom, na repetição 2 eu tenho a tecla_clap, na repetição 3 Tim, na repetição 4 Puff e assim por diante, vai até a repetição 9, que encerra o nosso while.
+
+[06:24] Voltando no “main.js”, podemos perceber que tem uma repetição de código no nosso while, que é a lista de teclas contador. Estamos usando tanto para acessar o classList, tanto para fazer o onclick. Essa repetição de código não é legal e podemos também atribuir isso para uma constante que tenha o nome mais significativo, afinal eu vou ter listaDeTeclas[contador]?
+
+[06:55] O que isso tem por baixo dos panos? Então quando eu acesso um elemento de uma lista de teclas eu tenho uma tecla, então eu posso criar uma constante, uma referência tecla, que vai conter o elemento daquele momento da lista de teclas. Então passa o nosso índice que está dentro do contador e eu já posso substituir esse código listaDeTelas[contador] do classList por tecla e do onclick também por tecla.
+
+[07:32] Já deixando nosso código um pouco mais limpo. E agora que eu já tenho a tecla, tenho o instrumento, falta só termos o ID correto, essa parte de #som pois dentro da referência instrumento temos tecla_pom.
+
+[07:56] Como que seria isso? Se eu tivesse uma string seria algo como um pseudocódigo dentro de um comentário. Seria algo como ‘#som e o restante do código eu já tenho, que está dentro desse instrumento. Então vou representar como chaves essa parte que é variável, que é dinâmica, dentro da nossa string.
+
+[08:29] É possível fazer isso com JavaScript e é muito simples. Eu vou criar uma nova referência constante que vai guardar o ID da tag áudio. Então vou chamá-la de idAudio. E ela vai receber essa nossa string que vai ter um pedaço dinâmico dentro dela. Só que para eu fazer isso eu não posso utilizar a string comum, que é com aspas simples ou aspas duplas, eu vou ter que substituir pela crase. E a crase é uma outra forma de criar strings (textos) dentro dos JavaScript.
+
+[09:09] Então vou começar a minha string com crase e vou finalizar com crase. Veja que funciona, fica com o mesmo destaque de cor, amarelinho, sinalizando que é uma string.
+
+[09:23] E agora tudo que é variável dentro da minha string eu preciso envolver entre chaves, porém iniciando $ antes da abertura das chaves. Veja que até a cor do highlight do VS Code já muda, sinalizando que é um pedaço de código.
+
+[09:43] Esse ${} faz uma abertura para o código de JavaScript de dentro da string, eu posso acessar variáveis, métodos fazer contas aqui dentro, é incrível. E o nome desse recurso que utilizamos da linguagem JavaScript é template string. Eu até vou escrever para vocês conhecerem.
+
+[10:05] E agora eu vou fazer o console.log em vez do instrumento, eu vou fazer o console.log da nossa referência idAudio para vermos como ficou. Então vou salvar no “main.js”, vou recarregar o navegador e já temos os IDs dinamicamente, som_tecla_pom, som_tecla_clap.
+
+[10:31] Vamos olhar no Firefox, isso é muito importante, sempre verificar nos navegadores se está com algum problema. E vemos que está tudo certinho no Firefox também.
+
+[10:41] Então agora dentro da nossa função, onde tem tocaSom, eu vou tirar esse parâmetro fixo que está dentro de função, da nossa função anônima, da tocaSom, e vou começar a passar a nossa idAudio, que é o parâmetro, a nossa string que está sendo montada a cada iteração do while.
+
+[11:10] Vou salvar, vou recarregar, estou no Firefox e vou executar os sons de cada um dos nossos instrumentos. Vou clicar no Pom, saiu. E no clap? Saiu. No tim? Saiu. No splash, no tic, no pom, no toim, no puff, no psh, todos deram certo! Então finalmente no Alura Midi está funcional, com código super inteligente, super reaproveitado, podemos tirar esses console.log para não ficar poluindo nosso console da aplicação.
+
+[11:53] Na verdade eu posso tanto apagar, mas se vocês quiserem manter para se lembrar, podemos colocar com barra barra, comentar esse código, salvar.
+
+No nosso último vídeo conseguimos finalmente terminar de implementar as funcionalidades completas do Alura Midi. Então se eu clicar em cada tecla do teclado do nosso Midi, o som daquele instrumento é reproduzido.
+
+[00:17] E no código conseguimos fazer de certa forma um código inteligente, automatizado, que tem poucas repetições ou basicamente nenhuma repetição, e conseguiu espelhar essa funcionalidade para todas as teclas. Agora pensando em melhoria de código, ainda há bastante coisas que podemos fazer. E aqui nesse vídeo vamos melhorar um pouco mais em relação a essa forma de percorrer cada elemento por uma lista, que estão dentro de uma lista.
+
+[00:52] Utilizamos a estrutura de repetição while, que vimos que depende de uma condição ser verdadeira ou falsa para determinar se aquela repetição, essa rotina que está dentro das chaves do while vai ser aplicada. Porém, imagina que podemos aumentar o Alura Midi e em vez de ser apenas um teclado digital, podemos querer oferecer para os usuários outros instrumentos, um bongo, um piano, uma harpa, enfim, podemos aumentar a quantidade de instrumentos que queremos oferecer para os nossos usuários do Alura Midi.
+
+[01:40] Portanto, o while dependeu de um fator externo para que ele pudesse funcionar, que é no caso o contador. Tivemos que criar uma variável, uma referência variável chamada contador, que é verificada a cada repetição do while e tem seu valor modificado também a cada repetição da nossa rotina do while.
+
+[02:07] Porém, imagina se tivéssemos outros instrumentos que tem botões, então se fôssemos reproduzir outros whiles, se tivéssemos outras listas para reproduzir, teríamos que declarar outros contadores e então começaria a voltar a ter repetições em nosso código, teríamos que criar, por exemplo, um contador let contador2. Ou contadorBongo, contadorPiano, enfim, essa variável contador iria ficar repetitiva.
+
+[02:51] E o JavaScript oferece outras estruturas na linguagem que podem resolver esse problema de forma mais otimizada, ou seja, já oferece contido nele toda a estrutura, tanto do contador como da parte da condição para nossa rotina de repetição em encerrar e também da parte da incrementação desse valor contador.
+
+[03:16] E essa estrutura que vamos utilizar no lugar do while se chama for, e for significa “para”. O for uma estrutura de laço de repetição ou de loop, que também vai fazer a mesma coisa, enquanto uma instrução, uma condição for verdade, ele vai repetir essa rotina, porém a vantagem em relação ao while é que o contador pode ser declarado ainda dentro dos parênteses do for.
+
+[03:51] Então agora eu substitui a palavra while por for e dentro do parênteses eu vou fazer a declaração do meu contador, let contador = 0; e depois do ponto vírgula eu vou ter minha condição. Então eu não vou mais precisar ter a variável let declarada fora do nosso laço de repetição, da nossa estrutura, declaração de repetição.
+
+[04:26] E também a terceira vantagem do nosso for, a primeira é ter a declaração do contador dentro, junto com o segundo parâmetro do for ter a condição para o nosso laço encerrar, e também a terceira é que essa incrementação que estamos fazendo aqui no contador, que é contador recebe contador mais 1, pode ser declarada nesse terceiro parâmetro do for, com uma sintaxe muito enxuta e muito bonita que é contador++.
+
+[05:06] Esse contador++ vai fazer exatamente o que essa linha de código na linha 21 está fazendo, que é pegar o contador, o valor atual da variável contador, incrementar mais 1 e guardar novamente essa execução desse código na variável contador, reatribui esse novo valor. Então não vamos mais precisar colocar esse código da linha 21 dentro do for. Vamos usar console.log só para verificar novamente, eu vou tirar o comentário, vou tirar o console.log do nosso idAudio para o nosso código ficar mais bonito.
+
+[05:53] Vou salvar. Também vou mover o template string para depois da linha da constante idAudio para ficar tudo bonitinho, as declarações das nossas constantes, o onclick e o console.log no final. Vou salvar o meu “main.js”, vou no navegador, vou recarregar o Chrome.
+
+[06:13] 12345678 como já vimos, 0 a 8. Lá no Firefox agora eu vou recarregar. Também confirmou o nosso contador ainda funcionando do jeito que esperamos. E vamos ver também agora se os nossos botões estão ainda reproduzindo o som. Então vou tocar a tecla Puff.
+
+[06:37] Deu certo. Vou tocar a tecla Tim. Deu certo aqui no Firefox, vamos ver no Chrome, vou recarregar novamente, colocar a tecla psh e a tecla tom, deu certo. Então vou só remover esse console.log para o nosso código ficar mais limpo.
+
+[06:57] É sempre bom deixar também no fim do código uma nova linha e não encerrar o final do arquivo com um final de código é sempre bom deixar esse respiro, porque depois se o nosso código vier a sofrer algum tipo de transformação por ferramentas que juntam o código, que ofuscam o código, isso vocês podem conhecer em cursos mais avançados. Então é uma boa prática sempre deixar uma linha vazia no fim do arquivo.
+
+[07:27] Então agora nosso código está um pouco mais bonito, um pouco mais funcional e pronto para receber novos instrumentos caso quisermos.
+
+Percorrendo uma lista:
+Como percorrer uma lista usando a estrutura de repetição while, a criar referências variáveis com let, e como incrementar o valor de uma variável, e criar uma condição para evitar o loop infinito, também conhecemos o atributo length contido nas listas que nos ajudou a obter dinamicamento o valor do tamanho de uma lista.
+
+Função com parâmetros:
+Como declarar e utilizar parâmetros dentro de uma função que criamos, e o que é uma função anônima e o retorno undefined de uma função.
+
+Textos dinâmicos:
+Como criar textos dinâmicos utilizando template string e como acessar as classes de um elemento através do atributo classList.
+
+Repetição otimizada com For:
+Como é a estrutura de repetição for e como ela pode nos ajudar com um código mais limpo, além da forma de incrementar um valor de variável com o operador ++.
+
+Bom, agora o nosso Midi está quase pronto, quer dizer ele já está pronto, ele já está funcionando, se clicarmos com o mouse nas teclas já vamos escutar o som de todos os instrumentos.
+
+[00:15] Vou clicar no psh. Então o que mais falta para nossa aplicação Midi, o Alura Midi ficar sensacional? Bom, como usamos a tag < button> para cada botão do Alura Midi, o < button> já tem uma navegação via teclado por padrão, é um funcionamento padrão da tag < button>, então se eu pressionar a tecla “Tab” do meu teclado do computador, veja que uma luzinha amarela, que já foi adicionada pelo CSS, vai aparecer mostrando qual é o foco da navegação de tab da nossa aplicação.
+
+[01:03] Então se eu der “Tab” ele vai selecionando qual botão está em foco. E se eu pressionar a tecla “Enter” ou a barra de espaço essas duas teclas vão reproduzir o som ou reproduzir aquilo que foi programado para o nosso evento de clique do mouse. Então vou apertar agora com a tecla “Enter” e com a barra de espaço.
+
+[01:37] Vocês já devem ter percebido uma coisa que aconteceu de estranho. Quando eu apertei o “Enter”, vou apertar de novo agora em uma tecla pouco menos barulhenta, na psh, “Enter”. Reproduziu o som e o fundo do botão não ficou vermelho, não deu aquela característica, aquela impressão que o usuário pressionou o botão visualmente.
+
+[01:59] Agora vou apertar com a barra de espaço. Veja que com a barra de espaço temos essa impressão de estar sendo pressionado o botão. Eu estou no Chrome, vamos ver no Firefox. Eu vou recarregar, com o “Tab” eu já tenho navegação via teclado funcionando, agora eu vou apertar no “puff” a tecla “Enter”, reproduziu o som e não ficou vermelho o fundo. E a barra de espaço também reproduziu o som e não ficou vermelho o fundo.
+
+[02:30] Se eu clicar com o mouse, fica vermelho o fundo. No Chrome, se eu clicar com o mouse fica vermelho o fundo. Então perceba que a navegação via teclado do Midi está problemática, está inconsistente e precisamos arrumar isso nessa aula.
+
+[02:48] Para começar precisamos dar uma olhada no nosso CSS. Então vou abrir o Visual Studio Code e vou abrir o arquivo “estilo.css”, que tem todos os estilos da nossa aplicação.
+
+[03:02] E na linha 49 eu vou ver que já foi programado os estilos para esse estado active do button, que é quando o usuário está pressionando aquele botão, ele é representado por esse estado, essa pseudoclasse active. Porém também foi destinado uma classe ativa para representar esse mesmo conjunto de estilos e vamos ter que fazer a inserção dessa classe ativa pelo JavaScript nos botões que forem "clicados" nesse teclado do nosso Alura Midi com o “Enter” e com o espaço.
+
+[03:50] Podemos, inclusive, voltando para o navegador, estou com o Chrome aberto, abrir um botão, por exemplo, vou pegar a tecla “Tim” e testar na aba “Elements” adicionando uma classe manualmente dentro do atributo class, vou colocar ativa. Se eu escrever ativa já vai aparecer o botão vermelho e esses são os estilos de quando o botão está sendo pressionado.
+
+[04:17] Agora eu preciso saber como fazer isso com o JavaScript. Vou recarregar só para remover essa classe ativa que eu coloquei e vamos para o console para testar e tentar descobrir como eu faço isso via código.
+
+[04:33] Já sabemos como acessar um elemento que está dentro do nosso teclado do Midi, criamos uma referência listaDeTeclas com todas as teclas. Para acessar um elemento eu uso a anotação de colchetes e o número do índice. Eu vou usar o 2 que vai selecionar o “Tim”, o botão “Tim”. Então se eu dou “Enter”, se eu digito isso já vejo que é realmente referência àquele botão.
+
+[04:58] E também com o ponto conseguimos acessar todos os atributos e funcionalidades para um elemento HTML, e também já conhecemos o atributo classList, que armazena uma lista de todas as classes que estão naquele elemento e vimos que existe a classe tecla e a classe tecla_tim.
+
+[05:18] Porém, é uma lista, precisamos algo nessa lista, adicionar uma nova classe, portanto se eu colocar o ponto depois de classList eu consigo ver também uma série de funcionalidades disponíveis para um classList, então podemos ver que tem muitas coisas aqui, inclusive algumas coisas que já vimos em outros tipos de lista, como por exemplo length, que é o tamanho.
+
+[05:45] E aqui queremos adicionar, portanto existe essa função add, que no português significa “adicionar”, e eu já sei que é uma função porque justamente o f embaixo indicando que aquilo é uma função. Então eu vou usar essa função add, toda função precisa ter parêntesis para ser chamada. E eu vou passar uma string, ou seja, um texto, então eu tenho que abrir aspas, pode ser simples ou duplas, e preciso passar o nome da classe que eu quero adicionar, no nosso caso é ativa. Então ao executar esse código listaDeTeclas[2].classList.add(‘ativa’) e quando der “Enter” a tecla “tim” vai ter que ficar vermelha.
+
+[06:26] Viram? Aconteceu. Agora temos que reproduzir esse código dentro do nosso “main.js” e esse código de adicionar a tecla ativa tem que ser no momento em que eu dou “Enter” com o teclado, que eu pressiono uma tecla do teclado. E diferente do que temos trabalhando aqui, que foi cliques do mouse.
+
+[06:50] Agora eu vou voltar no “main.js” e dentro do nosso for, onde já temos uns eventos, o evento de clique destinado, embaixo eu vou começar adicionar mais um código.
+
+[07:05] Eu vou dar “Enter”, vou chamar a tecla em questão do nosso loop que está sendo acessado pelo for, a nossa lista de elementos e vou agora entrar nessa tecla e ver quais são as outras opções que existem para ela de eventos. Então, por exemplo, existe o evento on, e acontece todos, o on conseguimos acessar vários tipos de evento no Visual Studio Code, ele mostra também, mas nesse caso ele não está me mostrando, mas às vezes ele mostra.
+
+[07:37] O evento que eu quero é um evento de teclado, e o nome desse evento de quando eu aperto e a minha tecla está embaixo. Então o nome dele é onkeydown, key significa “tecla”, então quando a tecla estiver abaixada, tecla.onkeydown.
+
+[07:57] Então agora já sabemos qual é o evento que representa esse momento que uma tecla é apertada no JavaScript e vamos atribuir uma função anônima igual fizemos com o tocaSom no onclick, então depois de onkeydown = function () { e vamos agora dentro colocar aquele código que já testamos no console, que é acessar a tecla em questão, acessar o classList, acessar a função adicionar e colocar a classe ativa.
+
+[08:32] Então eu tenho a tecla em questão, então tecla.classList.add(‘ativa’); vou salvar e vou testar no meu navegador. Vou dar um recarregar e vou começar a navegar via teclado no meu Alura Midi no Chrome. Então vou dar o “Enter”.
+
+[09:03] Ficou vermelho. Vou dar barra de espaço, ficou vermelho. Vou dar “Tab”, também. Puff também. Eu nem estou apertando e nem estão reproduzindo som e está ficando vermelho todas as teclas agora. O que está acontecendo?
+
+[09:23] Então o que está acontecendo é um problema que quando começamos a trabalhar com inserção de classes no JavaScript precisamos prever. Se abrimos a aba “Elements” do nosso console vamos ver que todos os nossos botões estão com a classe ativa que foi inserida via JavaScript.
+
+[09:41] Eu inclusive vou dar mais um “Tab” para vocês verem que o JavaScript vai fazer piscar os elementos e adicionar mais uma classe. Vou dar um “Tab”, vocês vão ver.
+
+[09:57] Piscou de roxo e adicionou a classe ativa no “Tic”. Mais um, clicou, piscou de roxo e isso identifica que o JavaScript está manipulando essa árvore de elementos e os atributos desses elementos, então eles são destacados.
+
+De novo vamos voltar no console e vamos fazer o mesmo exercício, vamos acessar a listaDeTeclas, vou pegar um índice qualquer, vou pegar o índice 4, que vai pegar bem a tecla “splash” no meio, vou acessar o classList dela e vou usar o ponto depois do classList com todas as opções que eu tenho e vou observar que eu tenho uma função chamada remove.
+
+[00:24] Então como estou acessando classList, esse remove só poderia significar remover uma classe dessa lista de classes, então vou abrir e fechar parênteses, vou passar entre aspas o nome da classe que eu quero tirar, lembrando que como já estávamos trabalhando com classes, não há necessidade de voltar o ponto no início, pois já são classes, não estamos trabalhando com seletores e sim com classes.
+
+[00:52] Então eu vou escrever o nome da classe que eu quero remover ativa listaDeTeclas[4].classList.remove(‘ativa’) e quando eu der “Enter” o “Splash” tem que voltar a ser branco.
+
+[01:03] Pronto, funcionou. Agora a mesma lógica que fizemos para adicionar, vamos ter que fazer para remover. Então qual é o momento que fazemos aqui que identificamos na ação do teclado que eu preciso remover essa classe? E podemos usar um outro evento do teclado, que é quando o usuário solta a tecla.
+
+[01:27] Então eu vou lá no meu “main.js” e vou criar um novo evento, com uma nova função. Então tecla.onkeyup, que é quando o dedo do usuário está no alto, solta aquela tecla do teclado. Vou passar uma função function, abre e fecha parênteses, uma função anônima, abre e fecha parênteses, abre e fecha chaves e vamos usar o tecla.classList.remove(‘ativa’);. Vou salvar, vou recarregar o meu navegador e vamos ver se vai funcionar.
+
+[02:17] Então vou apertar com a barra de espaço o “pom” vocês vão ver que reproduziu, se eu manter pressionada ele vai manter vermelho e se eu soltar ele vai reproduzir o pom. Mas agora temos um problema. Se eu continuar usando o “Tab”, ele vai continuar pintando todos de vermelho.
+
+[02:41] Então temos mais um problema para resolver. O desafio que temos aqui agora na nossa aula é que a nossa lógica de a cada tecla que é pressionada e removida está sendo válida para qualquer tecla do nosso teclado. Então se eu apertar a tecla “H”, se eu apertar a tecla “G”, se eu apertar a tela “J”, não reproduz o som, assim como a tecla “tab” não reproduz o som porque não é o comportamento padrão dos buttons fazer a mesma coisa que o clique, como o “Enter” e o espaço faz.
