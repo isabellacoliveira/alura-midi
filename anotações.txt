@@ -335,3 +335,165 @@ De novo vamos voltar no console e vamos fazer o mesmo exercício, vamos acessar 
 [02:17] Então vou apertar com a barra de espaço o “pom” vocês vão ver que reproduziu, se eu manter pressionada ele vai manter vermelho e se eu soltar ele vai reproduzir o pom. Mas agora temos um problema. Se eu continuar usando o “Tab”, ele vai continuar pintando todos de vermelho.
 
 [02:41] Então temos mais um problema para resolver. O desafio que temos aqui agora na nossa aula é que a nossa lógica de a cada tecla que é pressionada e removida está sendo válida para qualquer tecla do nosso teclado. Então se eu apertar a tecla “H”, se eu apertar a tecla “G”, se eu apertar a tela “J”, não reproduz o som, assim como a tecla “tab” não reproduz o som porque não é o comportamento padrão dos buttons fazer a mesma coisa que o clique, como o “Enter” e o espaço faz.
+
+ Até o momento conseguimos adicionar a classe ativa utilizando teclas do nosso teclado. Então ao navegar com o teclado no Alura Midi, por exemplo, com o “Tab” e eu apertar o “Enter” do meu teclado conseguimos acionar o som e também acionar o estado de tecla ativa, que é representado por essa cor vermelha e que já estava sendo representado com o clique do mouse pelo comportamento padrão do CSS, que aciona aquele estado “active”.
+
+[00:40] Porém, com o teclado isso não ocorria, portanto foi necessário adicionar via JavaScript a classe ativa para que houvesse a consistência de estilos quando usuário estivesse navegando via teclado e mouse.
+
+[00:58] Então agora, neste momento qualquer tecla do teclado é capaz de adicionar essa classe ativa e vamos precisar agora resolver qual é o momento certo de adicionar a classe ativa, que não é a cada tecla do meu teclado e sim, apenas se for pressionado a tecla “Enter” ou a tecla barra de espaço, que são as que já têm programado para acionar o som nativamente pelo navegador e reproduzir o som dos instrumentos.
+
+[01:39] Para começarmos a solucionar esse problema, vamos voltar no “main.js”, no Visual Studio Code. E dentro do for, onde temos os eventos do teclado, o onkeydown, o onkeyup, no onkeydown, que é quando adicionamos a classe ativa, precisamos acionar esse código tecla.classList.add de acordo com uma dada condição. E qual é a condição? É se a barra de espaço ou a tecla “Enter” do teclado do computador forem pressionadas, e não a qualquer tecla, que é o que está acontecendo aqui.
+
+[02:28] Eu não estou delimitando qual tecla do teclado, estou dizendo para o JavaScript que qualquer tecla que for apertada execute este código que está na função atrelada para o onkeydown. Então no nosso caso temos uma condição para esse trecho de código a ser executado.
+
+[02:53] E no JavaScript, assim como em qualquer linguagem de programação, temos uma estrutura condicional que pode nos ajudar a fazer esse tipo de situação em código, é super trivial, é comum que isso aconteça.
+
+[03:07] Então podemos até escrever em português por enquanto, por exemplo, "se dada a condição que eu vou me informar para o JavaScript entre os parênteses for verdadeira, então se (dada condição for verdadeira) { faça o trecho de código que estará entre as chaves dessa condição".
+
+[03:42] Mas sabemos que o JavaScript é uma linguagem de programação, então o código das estruturas precisa ser em inglês, então esse “se” em inglês é o famoso if, que como eu já comentei, tem em várias linguagens de programação. Então esse código só vai ser executado se a condição que eu informar nos parâmetros for verdadeira. E agora precisamos descobrir como montar essa condição. E um pedaço dela já sabemos, que é se a tecla do teclado for espaço ou for “Enter”, eu quero que isso aconteça.
+
+[04:29] Então vamos ter que de certa forma ter a informação dessa tecla e compará-la com o nome dessa tecla, por exemplo espaço. Vou colocar em português por enquanto, porém logo vamos descobrir qual vai ser o nome correto. Então eu coloco if (‘Espaço’) {. Agora vamos precisar descobrir qual tecla o usuário apertou do teclado dele para conseguir terminar de montar essa condição.
+
+[04:59] No JavaScript temos um recurso que a própria linguagem e o próprio executor ou o navegador que executa o código JavaSript fornece para trabalharmos com os eventos. Então esse recurso está disponível para todas as funções que são diretamente atreladas a um evento. E dentro dessa função, temos o parâmetro dela, é fornecido para ela como primeiro parâmetro os detalhes do evento que foi acionado e podemos dar um nome qualquer a este parâmetro que vai representar o evento que foi acionado.
+
+[05:41] Normalmente você vai encontrar em códigos que você for trabalhar como event, ou apenas como "e", e aqui vamos dar o nome significativo, vamos escolher aqui evento em português, para você saber que esse nome eu escolhi e que dentro desse nome o JavaScript vai fornecer todos os detalhes do evento que foi acionado. tecla.onkeydown = function (evento) { ...
+
+[06:07] E vamos usar aqui aquela função console.log para entendermos o que tem dentro desse evento que foi fornecido pelo JavaScript para conhecermos os eventos que estão acontecendo, os detalhes do evento que está acontecendo ao clicar em uma tecla do Midi, então console.log(evento).
+
+[06:26] Então vou salvar e vou voltar no navegador. Recarreguei o navegador, eu estou no Firefox, vou dar a tecla “Tab” e vou dar de novo a tecla “Tab”, vou pressionar de novo no meu teclado. Perceba que foi imprimido no console os detalhes desse evento do keydown, vou abrir aqui nesse triângulo cinza que expande todos os detalhes desse evento.
+
+[06:57] Podemos ver que tem aqui o objeto desse evento, ou seja, uma série de propriedades com valores que guardam informações sobre esse evento e aqui conseguimos dar uma olhada, eu sei que tem muitos, mas conseguimos ver que tem algumas propriedades que tem informação desse evento, por exemplo, eu pressionei no teclado o “Tab”, então ele me falou que foi através da propriedade code o “Tab”.
+
+[07:26] Também consigo ver que tem outras propriedades que tem essa informação como a key, também tenho o a keyCode, que dá um número para essa tecla que foi pressionada. Então também tem o tipo do evento que foi keydown, tem esse which que também mostra o número, por baixo dos panos também tem números para o nome das teclas, mas é melhor usarmos nomes com significado.
+
+[07:51] Então agora, por exemplo, vou clicar no teclado uma das teclas que queremos usar no Midi. Então eu vou voltar aqui no foco da tela e vou apertar o “Enter”. Vai reproduzir o som. E conseguimos ver que no code tem o nome “Enter”, no key também e vamos testar agora com a tecla de espaço.
+
+[08:25] Também. Então vimos que vai ter o code: "Space", porém, no key a tecla de espaço é representada com aspas e um espaço vazio, o que pode ser um pouco complicado. E isso nos faz tomar a decisão correta de qual dessas propriedades podemos usar para trazer no JavaScript e montar a nossa lógica. Eu gosto muito mais desse code, porque tem um nome escrito da tecla que foi pressionada, ao contrário de ser o que a tecla faz mesmo, que é o que é essa propriedade key mostra, ela adiciona um espaço.
+
+[09:03] Podemos até testar com outras teclas do teclado, por exemplo uma letra do alfabeto, por exemplo G. Vai mostrar code: "KeyG", key ele vai mostrar o G. Então isso para mim é o critério que vou usar de qual dessas propriedades do evento eu vou utilizar. Então agora voltando lá no “main.js”, no Visual Studio Code, esse evento eu vou entrar nele com o ponto e vou acessar a propriedade code e vou imprimir no console, então console.log(evento.code).
+
+[09:39] Então vou voltar no console, vou recarregar a minha página, vou voltar no navegador, vou recarregar a página e vou pressionar a tecla só para vocês verem o que acontece, isso tem que estar com foco no botão. Então vou clicar “Tab” e vou apertar, por exemplo, a b c d, “Enter”, espaço, “tab”.
+
+[10:03] Então vemos que em tempo real, no mesmo momento que pressionamos uma tecla do teclado, já é impressa qual tecla, a informação de qual tecla o usuário apertou. E agora então temos a informação necessária para criar a condição dentro do if. Então agora dentro do if eu vou fazer if (evento.code, precisa ser igual ao texto, eu escrevi “Espaço”, mas sabemos que é em inglês, Space, então if (evento.code ‘Space’) { para conseguir executar o código tecla.classList.add(‘ativa’);.
+
+[10:44] Só que faltou o operador de igualdade para fazer essa condição verdadeira. Então eu preciso colocar esse operador de igualdade em if (evento.code ‘Space’) {. Normalmente, quando viemos da Matemática, usamos o operador de igual =, evento.code é igual a Space? Só que sabemos que no JavaScript o operador, o igual não tem essa função de igualar, mas sim de atribuir, de adicionar o que tem do lado direito para dentro do lado esquerdo.
+
+[11:23] Então nesse caso é a mesma coisa, eu preciso usar o operador de igualdade, não de atribuição, que é representado pelo igual igual ==. Só que existem dois operadores de comparação, esse operador de igualdade já vai me retornar, vai fazer essa conta e vai retornar verdadeiro ou falso, uma condição verdadeira. Inclusive eu posso colocar essa operação no console.log para eu ter certeza. Então event.code == ‘Space’, vou salvar, vou recarregar no navegador e vou dar um foco em uma tecla do Midi e vou pressionar o espaço.
+
+[12:06] true, verdade, eu apertei “espaço”. Agora vou apertar “Enter”. false. Ou seja, a condição já deu falso. Eu vou apertar qualquer tecla, por exemplo o H. false de novo. Ele agora incrementou para dois (false). Vou apertar “Space” de novo. Então vou clicar aqui no “Space”. true.
+
+[12:26] Então verificamos no console que essa "conta" evento.code == ‘Space’, vai retornar true. Vai verificar se a condição for verdadeira. Então agora vamos ver se vocês notaram que quando estou apertando outras teclas do teclado, então vou voltar no foco, vou apertar J e não está ficando vermelho, K, não está ficando vermelho, “Enter”, vai reproduzir som, mas não vai ficar vermelho. Isso no Firefox, vou apertar “espaço”, ficou vermelho. Porque a condição foi verdadeira.
+
+[13:02] E também já temos que colocar para a teclar “Enter”. Mas antes vamos conhecer um pouco mais sobre esse tipo de operador. Existem dois tipos de operadores de igualdade no JavaScript o “==” e o “===”, três vezes. E este é o mais seguro para utilizarmos para nossas lógicas. Por quê? A diferença entre eles, vou explicar no console do navegador. Vou limpar meu console e vou explicar para vocês.
+
+[13:37] Por exemplo, eu tenho o número 1, eu posso escrevê-lo com ou sem aspas. Porém, qual é a diferença? Sem aspas ele é um número do tipo Number e com aspas ele vai ser um texto com o número 1 dentro. E se eu usar o operador de igual igual, 1 == “1” ele vai comparar se o valor 1 é igual ao valor 1 que está dentro do texto e ele vai retornar true, porque realmente ele está comparando apenas valores, então verdade.
+
+[14:11] Agora se eu comparar 1 (número) com 1 (dentro de um texto), 1 === “1”, falso, porque o número 1 é diferente de um texto que tem escrito dentro o número 1. E tão com o operador de três iguais ele vai comprar não só o valor, mas também o tipo do dado, se ele é um texto ou se é um número, então se eu comparar 1 (número) com outro número 1, 1 === 1, aí sim vai ser verdadeiro.
+
+O nosso Alura Midi está lindo! Com todas as funcionalidades prontas, ou seja, todos os botões estão reproduzindo o som dos seus respectivos instrumentos, e também a navegação está completa, podendo ser feita via mouse ou via teclado e os estilos consistentes.
+
+[00:20] Agora nos resta melhorar um pequeno probleminha da nossa aplicação que está na função tocaSom. E eu vou mostrar no console do navegador para vocês. Podemos chamar essa função diretamente pelo seu nome, tocaSom. Idealmente passamos o ID de um elemento audio, mas o que vai acontecer se eu passar como parâmetro um ID ou uma classe de um elemento que não está declarado no nosso documento HTML?
+
+[00:56] Por exemplo, classe piano, tocaSom('.piano'). Não existe ninguém com essa classe no documento, então vou dar um “Enter” e vai me retornar um problema dizendo que o document.querySelector de piano é nulo.
+
+[01:12] Lembrando que esse seletor é passado, vou mostrar para vocês a nossa função tocaSom que está na linha 1 do código “main.js”. Então recebemos um seletor e logo passa para o querySelector buscar o elemento e depois dar play.
+
+[01:32] O outro problema é justamente essa parte do play, então vamos retornar no console do navegador e eu vou chamar a função tocaSom e passar um seletor de um elemento que existe no nosso documento HTML, porém não é uma tag de áudio, um elemento áudio. Então por exemplo, se eu passar button o que vai acontecer?
+
+[01:58] O play daquele elemento não é uma função, ou seja, ele vai dizer que o resultado do querySelector, que é o botão, não tem uma função play, é basicamente isso que está me dizendo. Portanto, essa função precisa ser aprimorada e precisamos tratar estes problemas com algumas estruturas com o que já vimos anteriormente, mas agora aplicada aqui para tratar problemas de código.
+
+[02:28] Vamos voltar no Visual Studio Code. E uma pequena coisa que podemos já arrumar, sabendo que não estamos recebendo apenas IDs de elementos áudio, estamos recebendo seletores, podemos simplesmente nomear esse parâmetro para algo mais consistente. Claro que podemos dar um nome que ajude a pessoa que use a função tocaSom diretamente entenda o que ela tem que passar, por exemplo, seletor de uma tag áudio.
+
+[03:06] Porém a pessoa pode tentar trapacear e passar um outro tipo de tag para tentar encontrar algum problema, alguma vulnerabilidade em nosso código, em nossa aplicação.
+
+[03:19] E eu vou tirar esse play por enquanto do querySelector, vou deixar para usarmos depois. E sabemos que então esse código do document.querySelector vai procurar um seletor e já vimos no console do navegador que dependendo do que foram passado pode retornar um nulo ou vai retornar que não consegue dar o play, ou seja, vai retornar um elemento.
+
+[03:44] Então eu vou guardar o retorno desta busca dentro de uma referência constante, vou criar uma constante, vou chamá-la de elemento e vou armazenar este retorno para poder ser mais fácil trabalharmos no nosso código mais para frente. const elemento = document.querySelector(seletorAudio).
+
+[04:04] E agora temos uma condição para executar o nosso código. Por exemplo, o que queremos fazer é chamar o elemento e dar um play nele, porém eu só posso fazer esse código elemento.play(); se o elemento realmente existir. Porém, se ele não existir sabemos que o valor dele vai ser nulo, portanto, antes de executar esse código podemos verificar se o elemento está nulo.
+
+[04:33] Então se temos uma condição para fazer alguma coisa caso o elemento seja nulo ou não, podemos usar a estrutura do if que já conhecemos, if (elemento === null) então se o elemento for estritamente igual a nulo, e o null escrevemos assim diretamente, sem aspas nem nada. E agora temos que pensar o que vamos fazer se o elemento for nulo. Para não dar um erro para o usuário podemos mandar uma mensagem avisando do problema, por exemplo, usando o alert ou podemos o console.log.
+
+[05:23] Vamos testar com alert, por exemplo, alert(‘Elemento não encontrado’), vou salvar isso e vamos testar no navegador. Então vou recarregar e vou passar a função tocaSom com um elemento que não existe, nossa classe piano.
+
+[05:46] Ao executarmos a classe piano, a função com a classe piano, vemos que realmente o nosso alert funcionou. Claro que eu fui bem dramática, coloquei um alert, mas poderia ser um console.log, se queremos ser mais discretos, por exemplo, console.log(‘Elemento não encontrado’), então fica a critério do que você acha que vai ser a melhor experiência para o usuário de vocês do Midi. Então vou colocar um barra barra e vamos testar de novo tocaSom passando o piano.
+
+[06:23] Elemento não encontrado, então tem essas duas formas de apresentar um problema para o usuário. Outra coisa que temos que fazer agora é quando o elemento é diferente do nulo, ou seja, se o querySelector retorna um elemento. Então podemos usar o if também, if (elemento ) diferente de nulo. Temos um operador novo que não conhecemos que é o diferente. Diferente no JavaScript, ou not equals, “não é igual”, é denotado por exclamação e igual, junto, e do outro lado o que vamos comparar, então if (elemento != null).
+
+[07:07] Então se elemento não for igual a nulo, faça alguma coisa, por exemplo podemos dar o elemento play, que é o que queríamos fazer. Vou colocar esse código elemento.play de volta no nosso if e podemos testar na nossa aplicação. Então se o elemento não for nulo eu quero dar o play. Então eu vou passar aqui um hashtag, a hashtag de uma tag áudio que já existe, só para vermos se tá funcionando de volta a nossa funcionalidade, tocaSom ('#som_tecla_tim'), vocês vão ver o “tim” agora.
+
+[07:51] Faltou dar o clique na nossa aplicação, então tem que dar um clique antes de executar a função, agora vai.
+
+[07:59] Agora tocou. Agora se eu passar um elemento que existe e for um elemento que não tem o play, por exemplo, o button. Ainda temos o problema que play não é uma função desse tipo de elemento. Então temos que se certificar que o elemento que está sendo passado é do tipo áudio, é uma tag áudio para podermos aí sim executarmos o play nela.
+
+[08:27] Então como poderíamos fazer isso? Ou seja, descobrir qual é o elemento que foi encontrado pelo querySelector. Então podemos usar o console.log para explorar a estrutura de um elemento. Então vou colocar o console.log(elemento) no elemento e vou comentar esse código do elemento play por enquanto só para não termos um erro. E vamos explorar o que tem dentro de um elemento. Vou salvar, vou recarregar e vou chamar função tocaSom.
+
+[09:00] Eu estou no Mozilla Firefox e vocês vão perceber que no Firefox, quando eu dou o console.log de um elemento ele vem com esse triângulo aqui. Isso significa que eu posso expandir essa tag e olhá-la no formato de um objeto JavaScript que tem todas as propriedades e as funcionalidades que são possíveis executar para um elemento ou consultar, no caso de propriedade. Então por exemplo, as funcionalidades que já colocamos nos nossos botões, podemos verificar nos atributos.
+
+[09:35] onkeydown, a função que fizemos, o onclick, a função que programamos também. E então também conseguimos ver propriedades que já são fornecidas pelo próprio JavaScript e HTML.
+
+[09:51] Por exemplo, eu tenho uma propriedade chamada tagName, que tem o nome da tag “BUTTON”, porém está em maiúsculo. Se eu der mais uma olhada por tudo, tenho esse nodeName, também tem “BUTTON” em maiúsculo e tem essa localName, que também tem o nome, porém minúsculo. Como o JavaScript é case sensitive, ou seja, tem essa sensibilidade entre maiúsculo e minúsculo, eu prefiro usar essa localName, porque ela é toda minúscula.
+
+[10:25] Eu também posso olhar no Chrome para ver como fica isso. Então eu abri o Chrome, o console, vou recarregar minha página e vou executar tocaSom passando tocaSom(‘button’) para ver o que acontece.
+
+[10:36] No caso do Chrome ele não aparece esse triângulo, isso não quer dizer que não funcione explorarmos o objeto, ele está disponível para usarmos, porém o Chrome ele não oferece aquele triângulo para explorarmos e essa é uma diferença entre o Chrome e o Firefox na hora de implementarmos códigos com JavaScript. E o objeto do elemento é esse conjunto de propriedades e funcionalidades que estão por trás de um elemento.
+
+[11:11] Então vamos agora no “main.js”, vamos dar um console.log(elemento.localName), e agora qualquer elemento que eu passar lá precisa exibir no console o nome desse elemento, ou seja, o nome da tag desse elemento. Então vou recarregar o Firefox e vamos passar tocaSom(‘button’).
+
+[11:35] "button", porque o seletor é o próprio tag name. Agora se passarmos, por exemplo, o som do tecla “tim”, que é a tag name do elemento que está com ID, é áudio. Vamos ver se vai dar certo. tocaSom ('#som_tecla_tim')
+
+[11:49] "audio". Deu certo. Mas vamos tentar a mesma coisa lá no Chrome só para vermos e ele vem como ‘button’, deu certo também. Então agora eu já descobri qual a propriedade aonde esse elemento guarda a informação do nome. E se for um elemento do tipo áudio, queremos que dê o play.
+
+[12:13] Então lembra que temos aquela comparação == ‘audio’, queremos que fique play, console.log(elemento.localName == ‘audio’). Estou fazendo essa lógica dentro do console, então no momento eu vou imprimir no console true ou false. Então se eu se eu fizer isso no Chrome, vou passar tocaSom(‘button’).
+
+[12:32] Falso, não é igual a "audio". Agora se eu passar o ID da tag “tim” vai tocar o som, ele é igual a nossa tag áudio. Então agora vamos seguir para o nosso código.
+
+[12:49] Então se o elemento não for nulo e for igual a tag áudio, podemos colocar isso dentro de um outro if, vou tirar esse console, agora eu posso dar o play neste som.
+
+if (elemento != null) {
+    if (elemento === 'audio') {
+        elemento.play();
+    }
+} 
+
+Vamos primeiro só dar uma melhorada no nosso código. Ficou um monte de if. Podemos reduzir esse if em um único if, usando uma coisa muito parecida que fizemos nossos eventos de teclado, que juntamos dois ifs em um usando o “ou”. No nosso caso podemos fazer a mesma lógica, só que ao invés de usar “ou”, porque o elemento não pode estar nulo e** tem que ser igual ao áudio, vamos usar o operador lógico *and, que significa *“e”, que soma “e” em português;
+
+[00:36] Se o elemento não for nulo e aí ele é representado por dois E comercial &&, esse é o símbolo do and, vou até escrever and para vocês. E se o elemento não for nulo e elemento.localName === ‘audio’), então eu vou dar play. Então eu posso reduzir tudo isso em um único if.
+
+[01:05] E também percebemos que esse if é a negação desse outro if, ou seja, se o elemento for nulo, então eu faço isso. Ou seja, se em algum momento o elemento não bater nisso, se o elemento for falso, eu vou ter uma outra condição falsa e eu posso no if usar uma estrutura conjunta que é o else.
+
+[01:34] O else significa “senão” e ele precisa ser invocado imediatamente depois de um if, que vai ser a função que vai ser executada caso esta condição que seja falsa. E tão se o elemento não for nulo e o elemento for diferente do áudio, então eu vou cair no else.
+
+[02:01] Então eu posso passar essa mensagem aqui de elemento não encontrado para dentro do else desse if, posso tirar esse == nulo, porque o else vai substituir dentro da nossa lógica. E agora essa mensagem vai cair para os dois erros, tanto para o button quanto para o piano.
+
+if (elemento != null && elemento.localName === 'audio') {
+    elemento.play()
+}
+else {
+    console.log('Elemento não encontrado');
+}COPIAR CÓDIGO
+[02:21] Vamos testar? Então eu vou voltar no meu navegador, vou recarregar e vou testar o piano, “Elemento não encontrado”. E o button? Ele está dando a mesma mensagem para o button, então podemos colocar uma mensagem um pouco mais detalhada, “elemento ou seletor inválido”. “Elemento não encontrado” ou “Seletor inválido”, por exemplo. console.log('Elemento não encontrado ou seletor inválido');
+
+[02:56] Podemos colocar a mesma mensagem para os dois. Então vou recarregar e vamos tentar agora com piano e com button. Temos a mesma mensagem, uma mensagem mais significativa. Então agora caso alguém use essa função tocaSom de maneira inapropriada, ela vai ter os detalhes do porquê não está funcionando a nossa função.
+
+[03:23] Então vimos o if, o else e também o operador and e o operador de not equals. Apenas um detalhe "muito mágico", o JavaScript já é inteligente o suficiente para quando o valor for nulo ou for vazio dentro de uma referência.
+
+[03:46] Então no caso, se isso (elemento) for nulo eu não preciso compará-lo com nulo, eu posso simplesmente retirar isso e ele vai fazer, o if já é inteligente para fazer essa verificação, ele pensa if elemento, se elemento existe, ou seja, tem alguma coisa que seja um valor que não seja nulo, que não seja vazio, que testou vazio ou zero ou false ou null ou undefined, se for diferente de tudo isso, então vai cair como uma condição verdadeira. Então eu posso deixar nossa lógica um pouco mais sucinta. E para essa aula é isso.
+
+if (elemento && elemento.localName === 'audio') {
+    elemento.play()
+}
+else {
+    console.log('Elemento não encontrado ou seletor inválido');
+}
+Eventos no teclado:
+O que são eventos do teclado e como usá-los: onkeydowne onkeyup. Como adicionar e remover classes em um elemento HTML através do JavaScript, com as funções add e remove do classList.
+
+Condições no código e operadores lógicos:
+O que é o objeto event, como declarar e acessar ele através do parâmetro de uma função atrelada a um evento. A estrutura condicional if e para que ele serve, além de conhecer o operador de igualdade ==, estritamente igual (===), e o operador or (||).
+
+Mais condições:
+A estruturas condicionais if e else juntas. O operador not equals (!=), operador lógico and (&&) e o valor null.
+
+
+
