@@ -7,6 +7,7 @@ function tocaSom(seletorAudio) {
 // se por exemplo passamos no console: tocaSom('.piano') essa classe não existe, portanto a mensagem será retornada
   
 //   se o elemento não for nulo e for igual a tag audio 
+// podemos deixar somente o elemento, sem o nulo do lado pois o js consegue fazer a identificação 
   if (elemento != null && elemento.localName === 'audio') {
     // podemos ver as propriedades javascript de uma tag ao chamarmos ela no console, o localName é como o js identifica as tags passadas entre aspas
          elemento.play();
